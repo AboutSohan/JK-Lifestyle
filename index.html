@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JK Lifestyle – Stay Healthy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #2d7a1f;
+      --green-light: #4caf35;
+      --green-pale: #e8f5e2;
+      --green-mid: #b8e0a4;
+      --orange: #e85d1a;
+      --gold: #f5a623;
+      --dark: #1a2e14;
+      --text: #2c3e24;
+      --muted: #6b7f5e;
+      --white: #ffffff;
+      --bg: #f7fbf4;
+      --card: #ffffff;
+      --radius: 18px;
+      --shadow: 0 4px 24px rgba(45,122,31,0.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, var(--dark) 0%, var(--green) 60%, var(--green-light) 100%);
+      padding: 48px 24px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-logo {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+    }
+    .hero-logo-icon {
+      width: 56px; height: 56px;
+      background: var(--white);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 900; color: var(--green);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .hero-logo-text { color: var(--white); }
+    .hero-logo-text span { display: block; font-size: 11px; letter-spacing: 3px; opacity: 0.7; text-transform: uppercase; }
+    .hero-logo-text strong { display: block; font-size: 22px; font-weight: 700; }
+    .hero h1 {
+      color: var(--white);
+      font-family: 'Tiro Bangla', serif;
+      font-size: 30px;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero p {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      font-size: 12px; padding: 6px 14px; border-radius: 99px;
+      margin-top: 16px; backdrop-filter: blur(6px);
+    }
+
+    /* ── NAV PILLS ── */
+    .nav-scroll {
+      background: var(--white);
+      border-bottom: 1px solid #e5f0de;
+      position: sticky; top: 0; z-index: 100;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .nav-scroll::-webkit-scrollbar { display: none; }
+    .nav-inner {
+      display: flex; gap: 4px; padding: 10px 16px;
+      white-space: nowrap;
+    }
+    .nav-pill {
+      padding: 8px 16px; border-radius: 99px; border: none;
+      background: transparent; cursor: pointer;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      transition: all 0.2s;
+    }
+    .nav-pill.active, .nav-pill:hover {
+      background: var(--green); color: var(--white);
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 28px 20px; }
+    .section-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .section-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .section-title { font-size: 20px; font-weight: 700; color: var(--dark); }
+    .section-subtitle { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ── PILLARS ── */
+    .pillars-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-bottom: 8px;
+    }
+    .pillar-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid #e8f2e2;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center;
+    }
+    .pillar-card:active { transform: scale(0.97); }
+    .pillar-card.full { grid-column: 1/-1; }
+    .pillar-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--green-pale);
+      color: var(--green); font-weight: 700; font-size: 15px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 10px;
+    }
+    .pillar-emoji { font-size: 26px; display: block; margin-bottom: 6px; }
+    .pillar-label { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.4; }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid #e8f2e2;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 15px; font-weight: 700; color: var(--dark);
+      margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .tag {
+      display: inline-block; padding: 3px 10px; border-radius: 99px;
+      font-size: 11px; font-weight: 600;
+    }
+    .tag-red { background: #fde8e0; color: #c0392b; }
+    .tag-green { background: var(--green-pale); color: var(--green); }
+    .tag-orange { background: #fef3e0; color: var(--orange); }
+
+    /* ── LIST ── */
+    .list-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f7ec;
+      font-size: 13.5px; line-height: 1.6;
+    }
+    .list-item:last-child { border-bottom: none; }
+    .list-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      margin-top: 6px; flex-shrink: 0;
+    }
+    .dot-red { background: #e74c3c; }
+    .dot-green { background: var(--green-light); }
+    .dot-gold { background: var(--gold); }
+
+    /* ── FOOD SECTIONS ── */
+    .food-category {
+      background: linear-gradient(135deg, var(--green-pale), #fff);
+      border-left: 4px solid var(--green-light);
+      border-radius: 0 12px 12px 0;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+    .food-category h3 { font-size: 14px; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+
+    /* ── FASTING TYPES ── */
+    .fasting-cards { display: flex; flex-direction: column; gap: 10px; }
+    .fasting-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--green);
+      border-top: 1px solid #e8f2e2;
+      border-right: 1px solid #e8f2e2;
+      border-bottom: 1px solid #e8f2e2;
+    }
+    .fasting-card h3 { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .fasting-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── ACCORDION ── */
+    .accordion { margin-bottom: 10px; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+    .accordion-header {
+      background: var(--card);
+      padding: 16px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; border: 1px solid #e8f2e2;
+      font-size: 14px; font-weight: 600; color: var(--dark);
+      user-select: none;
+    }
+    .accordion-header span.chevron { transition: transform 0.3s; font-size: 12px; color: var(--muted); }
+    .accordion-header.open span.chevron { transform: rotate(180deg); }
+    .accordion-body {
+      background: var(--green-pale);
+      padding: 0 18px;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s;
+      font-size: 13px; color: var(--text); line-height: 1.7;
+    }
+    .accordion-body.open { max-height: 600px; padding: 14px 18px; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight {
+      background: linear-gradient(135deg, var(--dark), var(--green));
+      color: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .highlight h3 { font-size: 16px; margin-bottom: 8px; color: var(--gold); }
+    .highlight p { font-size: 13px; opacity: 0.9; line-height: 1.7; }
+
+    /* ── RECIPE CARD ── */
+    .recipe-card {
+      background: linear-gradient(135deg, #1a2e14, #2d5a1e);
+      color: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .recipe-card h3 { color: var(--gold); font-size: 16px; margin-bottom: 14px; }
+    .recipe-item {
+      display: flex; justify-content: space-between;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: 13px;
+    }
+    .recipe-item:last-child { border-bottom: none; }
+    .recipe-item span:last-child { color: var(--gold); font-weight: 600; }
+
+    /* ── TIPS GRID ── */
+    .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tip-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid #e8f2e2;
+      text-align: center;
+    }
+    .tip-card .tip-icon { font-size: 28px; margin-bottom: 8px; }
+    .tip-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .tip-card strong { display: block; font-size: 13px; color: var(--dark); margin-bottom: 4px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.7);
+      padding: 28px 20px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .footer strong { color: var(--gold); display: block; font-size: 16px; margin-bottom: 6px; }
+    .footer a { color: var(--green-light); text-decoration: none; }
+
+    /* ── PROGRESS BAR ── */
+    .reading-bar {
+      position: fixed; top: 0; left: 0;
+      height: 3px; background: var(--green-light);
+      z-index: 999; width: 0%;
+      transition: width 0.1s;
+    }
+
+    /* ── DIVIDER ── */
+    .divider { height: 8px; background: var(--green-pale); margin: 0 -20px; }
+
+    /* ── ANIMATE ── */
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s, transform 0.5s; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (min-width: 480px) {
+      body { border-left: 1px solid #e0ede0; border-right: 1px solid #e0ede0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="reading-bar" id="readingBar"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-logo">
+    <div class="hero-logo-icon">JK</div>
+    <div class="hero-logo-text">
+      <span>Health Revolution</span>
+      <strong>JK Lifestyle</strong>
+    </div>
+  </div>
+  <h1>সুস্থ থাকুন<br/><em>JK Lifestyle</em> এর সাথে</h1>
+  <p>প্রাকৃতিক পদ্ধতিতে সুস্বাস্থ্য অর্জনের বিজ্ঞানসম্মত গাইডলাইন</p>
+  <div class="hero-badge">🌿 Dr. Jahangir Kabir প্রদত্ত নির্দেশিকা</div>
+</section>
+
+<!-- NAV -->
+<nav class="nav-scroll">
+  <div class="nav-inner">
+    <button class="nav-pill active" onclick="scrollTo('pillars')">মূলনীতি</button>
+    <button class="nav-pill" onclick="scrollTo('food')">খাবার</button>
+    <button class="nav-pill" onclick="scrollTo('fasting')">ফাস্টিং</button>
+    <button class="nav-pill" onclick="scrollTo('sleep')">ঘুম</button>
+    <button class="nav-pill" onclick="scrollTo('exercise')">ব্যায়াম</button>
+    <button class="nav-pill" onclick="scrollTo('special')">বিশেষ</button>
+    <button class="nav-pill" onclick="scrollTo('recipes')">রেসিপি</button>
+  </div>
+</nav>
+
+<!-- PILLARS -->
+<section class="section fade-in" id="pillars">
+  <div class="section-header">
+    <div class="section-icon" style="background:#e8f5e2">🏛️</div>
+    <div>
+      <div class="section-title">৫টি মূলনীতি</div>
+      <div class="section-subtitle">JK Lifestyle এর ভিত্তি</div>
+    </div>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar-card" onclick="scrollTo('food')">
+      <span class="pillar-emoji">🥗</span>
+      <div class="pillar-num">১</div>
+      <div class="pillar-label">স্বাস্থ্যকর খাদ্যাভ্যাস</div>
+    </div>
+    <div class="pillar-card" onclick="scrollTo('fasting')">
+      <span class="pillar-emoji">⏱️</span>
+      <div class="pillar-num">২</div>
+      <div class="pillar-label">না খাওয়ার অভ্যাস (অটোফেজি)</div>
+    </div>
+    <div class="pillar-card" onclick="scrollTo('sleep')">
+      <span class="pillar-emoji">🌙</span>
+      <div class="pillar-num">৩</div>
+      <div class="pillar-label">ঘুমের অভ্যাস</div>
+    </div>
+    <div class="pillar-card" onclick="scrollTo('exercise')">
+      <span class="pillar-emoji">🏃</span>
+      <div class="pillar-num">৪</div>
+      <div class="pillar-label">দৈনন্দিন ব্যায়াম</div>
+    </div>
+    <div class="pillar-card full" onclick="scrollTo('mental')">
+      <span class="pillar-emoji">🧘</span>
+      <div class="pillar-num">৫</div>
+      <div class="pillar-label">মানসিক প্রশান্তির চর্চা</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOD -->
+<section class="section fade-in" id="food">
+  <div class="section-header">
+    <div class="section-icon" style="background:#fde8e0">🍽️</div>
+    <div>
+      <div class="section-title">স্বাস্থ্যকর খাদ্যাভ্যাস</div>
+      <div class="section-subtitle">কী খাবেন, কী খাবেন না</div>
+    </div>
+  </div>
+
+  <!-- Avoid -->
+  <div class="card">
+    <div class="card-title">❌ <span>যা খাবেন না</span> <span class="tag tag-red">বর্জনীয়</span></div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>সব ধরনের শস্য জাতীয় খাবার — ভাত, চিড়া, মুড়ি, রুটি, পরোটা, বিস্কুট, নুডলস, পাস্তা, কেক, পিঠা</span></div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>চিনি, গুড়, মধু (শুরুতে), সকল কোমল পানীয়, জুস, ভেবারেজ</span></div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>সব ধরনের দেশি ও বিদেশি ফল (আপাতত)</span></div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>সরাসরি দুধ, মিষ্টি দই, পুডিং ও সব মিষ্টি</span></div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>আলু, স্কোয়াশ, বেবি কর্ন, কচুর মুখি (আপাতত)</span></div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>সয়াবিন, সূর্যমুখী, ভুট্টা তেল ও ভেজিটেবল তেল আজীবন নিষেধ</span></div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>সব ধরনের ফাস্ট ফুড ও প্রসেসড ফুড সম্পূর্ণ নিষেধ</span></div>
+  </div>
+
+  <!-- Allowed - Fat -->
+  <div class="food-category">
+    <h3>✅ তেল (Fat)</h3>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>Organic Extra Virgin Olive Oil</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>Organic Extra Virgin Cold Pressed Coconut Oil</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>খাঁটি ঘি ও খাঁটি মাখন/Butter</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>ঘানিতে ভাঙানো খাঁটি সরিষার তেল</span></div>
+  </div>
+
+  <!-- Protein -->
+  <div class="food-category">
+    <h3>✅ প্রোটিন</h3>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>কুসুমসহ ডিম</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>মাছ (চর্বিযুক্ত ও সামুদ্রিক মাছ)</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>তাজা মাশরুম</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>দেশি গরুর ও খাসীর চর্বিযুক্ত মাংস (পরিমিত)</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>দেশি মুরগী</span></div>
+  </div>
+
+  <!-- Vegetables -->
+  <div class="food-category">
+    <h3>✅ শর্করা (সবজি)</h3>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>সকল শাক — পালং, পুঁই, লাউ, লাল, ডাঁটা, কচু, মেথি, মুলা ইত্যাদি</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>ফুলকপি, বাঁধাকপি, ব্রকলি, টমেটো, লাউ, বরবটি, শিম, মুলা</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>শসা, টমেটো, গাজর, লেটুস — সালাদ হিসেবে</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>কাঠবাদাম (১২-২৪ ঘন্টা ভিজিয়ে), কাজু, চীনা বাদাম</span></div>
+  </div>
+
+  <!-- Drinks -->
+  <div class="food-category">
+    <h3>✅ পানীয়</h3>
+    <div class="list-item"><div class="list-dot dot-gold"></div><span>Organic Apple Cider Vinegar + ১ গ্লাস পানি (খালি পেটে)</span></div>
+    <div class="list-item"><div class="list-dot dot-gold"></div><span>পর্যাপ্ত পানি — ১ লিটারে আধা চা চামচ Himalayan Pink Salt মিশিয়ে</span></div>
+    <div class="list-item"><div class="list-dot dot-gold"></div><span>প্রতিদিন ১টি কচি ডাবের পানি</span></div>
+    <div class="list-item"><div class="list-dot dot-gold"></div><span>খাবারের ১ ঘন্টা আগে হলুদের চা (কাঁচা হলুদ বাটা + নারিকেল তেল + অর্গানিক মধু)</span></div>
+    <div class="list-item"><div class="list-dot dot-gold"></div><span>চিয়া সীড ১ কাপ পানিতে ৩০ মিনিট ভিজিয়ে</span></div>
+    <div class="list-item"><div class="list-dot dot-gold"></div><span>Radigel-N পাউডার ২/৩ ভাগ পানিতে ১ চামচ</span></div>
+  </div>
+
+  <div class="highlight">
+    <h3>🍽️ প্রতিদিনের প্লেটে কী থাকবে?</h3>
+    <p><strong>ভিনেগারের পানীয় → শাক-সবজি → ডিম/মাছ/মাংস → সালাদ → বাদাম → চীয়া সীডের পানীয় → ডাবের পানি</strong></p>
+    <p style="margin-top:8px">খাবার ভালো করে চিবিয়ে খান। খাওয়া শেষে ১ ঘন্টা পর পানি/চীয়া সীড পান করবেন।</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FASTING / AUTOPHAGY -->
+<section class="section fade-in" id="fasting">
+  <div class="section-header">
+    <div class="section-icon" style="background:#fef3e0">⏱️</div>
+    <div>
+      <div class="section-title">না খাওয়ার অভ্যাস</div>
+      <div class="section-subtitle">অটোফেজি — আত্মভক্ষণ প্রক্রিয়া</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔬 অটোফেজি কী?</div>
+    <p style="font-size:13px;line-height:1.7;color:var(--muted)">গ্রিক শব্দ থেকে আসা 'আত্মভক্ষণ' — শরীরের ভেতরের অঙ্গসমূহকে পরিষ্কার করার একটি প্রক্রিয়া। উপবাস বা রোজার মাধ্যমে এটি চালু হয়। ২০১৬ সালে এই আবিষ্কারের জন্য নোবেল পুরস্কার পান জাপানের বিজ্ঞানী ইওশিনোরি ওসুমি।</p>
+  </div>
+
+  <div class="fasting-cards">
+    <div class="fasting-card" style="border-left-color:#e85d1a">
+      <h3>🔥 ফ্যাট এডাপ্টেশন (Fat Adaptation)</h3>
+      <p>প্রথম ধাপ। কার্বসের পরিবর্তে চর্বি থেকে শক্তি তৈরির অভ্যাস গড়া। ৫-৭ দিন সময় লাগে। এই সময় পেট ভরে খান — যতটুকু খেলে পেট ভরে ততটুকুই খাবেন।</p>
+    </div>
+    <div class="fasting-card" style="border-left-color:#f5a623">
+      <h3>🌊 ফুল/ড্রাই ফাস্টিং</h3>
+      <p>২য় সপ্তাহে টানা ৭ দিন রোজা। সন্ধ্যায় ইফতারির সময় পেট ভরে খাবেন, রাত ৮টার মধ্যে শেষ করুন। সেহরিতে শুধু পানি বা ডিম+ঘি খাবেন।</p>
+    </div>
+    <div class="fasting-card" style="border-left-color:#2d7a1f">
+      <h3>💧 ওয়াটার ফাস্টিং</h3>
+      <p>সারাদিন শুধু পানি, ভিনেগারের পানি, সামান্য পিংক সল্ট। পরের দিন স্বাভাবিক খাবার খাবেন। ২৪ ঘন্টার মধ্যে ১ ঘন্টা খাওয়া বাকি ২৩ ঘন্টা উপবাস।</p>
+    </div>
+    <div class="fasting-card" style="border-left-color:#9b59b6">
+      <h3>⚡ ইন্টারমিটেন্ট ফাস্টিং</h3>
+      <p>৪-৬ ঘন্টা খাওয়ার সময়, বাকি সময় শুধু পানি ও ভিনেগারের পানি। যারা বেশি পরিশ্রমে দীর্ঘক্ষণ না খেয়ে কষ্ট পান তারা এটি অনুসরণ করতে পারেন।</p>
+    </div>
+    <div class="fasting-card" style="border-left-color:#1abc9c">
+      <h3>🍱 ওয়ান মিল এ ডে (OMAD)</h3>
+      <p>সারাদিনে একবেলা ভরপেট খাওয়া। ফুল ফাস্টিং ও ওয়াটার ফাস্টিং এর মতো কার্যকর। শরীরে দীর্ঘক্ষণ অটোফেজি চলে।</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SLEEP -->
+<section class="section fade-in" id="sleep">
+  <div class="section-header">
+    <div class="section-icon" style="background:#e8eeff">🌙</div>
+    <div>
+      <div class="section-title">ঘুমের অভ্যাস</div>
+      <div class="section-subtitle">সঠিক সময়ে পর্যাপ্ত ঘুম</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✅ ভালো ঘুমের জন্য করুন</div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>বিছানা ও ঘর আরামদায়ক রাখুন — বেশি গরম বা ঠান্ডা নয়, শব্দমুক্ত</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>ঘুমানোর সঠিক সময় রাত ১০টার মধ্যে — মেলাটোনিন হরমোন বেশি থাকে এই সময়</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>নিয়মিত হাঁটা বা সাঁতার কাটার চেষ্টা করুন — সকাল সবচেয়ে ভালো</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>রাত ৮-৯টার পর সব ইলেকট্রনিক ডিভাইস বন্ধ রাখুন</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>ঘুমানোর আগে গরম পানিতে গোসল করতে পারেন (চুল শুকিয়ে নিন)</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">❌ যা করবেন না</div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>দুপুরের পর চা বা কফি পান করবেন না</span></div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>কোনো প্রকার অ্যালকোহল পান করবেন না</span></div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>রাতে ভারী খাবার খাবেন না — বরং সন্ধ্যার দিকে সারতে হবে</span></div>
+    <div class="list-item"><div class="list-dot dot-red"></div><span>রাতে ঘুম না হলে পরদিন দিনে ঘুমাবেন না</span></div>
+  </div>
+
+  <div class="highlight">
+    <h3>💡 মনে রাখুন</h3>
+    <p>সঠিক সময়ে ৮ ঘন্টা ঘুমাতে পারলে সারা দিনের ক্লান্তি দূর হয় এবং শরীর আবার সতেজ হয়ে ওঠে।</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXERCISE -->
+<section class="section fade-in" id="exercise">
+  <div class="section-header">
+    <div class="section-icon" style="background:#e0f7ea">🏃</div>
+    <div>
+      <div class="section-title">দৈনন্দিন ব্যায়াম</div>
+      <div class="section-subtitle">নিয়মিত শরীর চর্চা</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🌅 প্রতিদিনের রুটিন</div>
+    <p style="font-size:13px;line-height:1.7;color:var(--muted)">প্রতিদিন সকালের নরম রোদে অন্তত ৪৫ মিনিট থেকে ১ ঘন্টা হাঁটার অভ্যাস করুন। যদি ১ ঘন্টা সময় না পান তাহলে সকাল বিকেল ৩০ মিনিট করে মোট ১ ঘন্টা হাঁটুন।</p>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">🚶</div>
+      <strong>হাঁটা</strong>
+      <p>সকালে নরম রোদে ৪৫-৬০ মিনিট</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🏋️</div>
+      <strong>ফ্রি হ্যান্ড</strong>
+      <p>বাসায় বসে নানান সহজ ব্যায়াম</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🧘</div>
+      <strong>যোগব্যায়াম</strong>
+      <p>ঘরে বসে যোগব্যায়াম করুন</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">💪</div>
+      <strong>শক্তি বৃদ্ধি</strong>
+      <p>ধীরে ধীরে পেশী শক্তিশালী হবে</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-title">🚴 মেইনটেইনিং এ ব্যায়াম</div>
+    <p style="font-size:13px;line-height:1.7;color:var(--muted)">মাসল বিল্ডিং করার ক্ষেত্রে নারীরা পুরুষের মতো ভারী ওজন না তুলে অল্প ওজন দিয়ে বারবার নিয়মিত চর্চা করতে পারেন। স্বাভাবিক গতিতে হাঁটা, জগিং করুন।</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MENTAL -->
+<section class="section fade-in" id="mental">
+  <div class="section-header">
+    <div class="section-icon" style="background:#f3e8ff">🧘</div>
+    <div>
+      <div class="section-title">মানসিক প্রশান্তি</div>
+      <div class="section-subtitle">মন ও শরীর একসাথে সুস্থ</div>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <h3>🌟 মনে রাখুন</h3>
+    <p>শরীর ও মন একটি আরেকটির সাথে ওতপ্রোতভাবে জড়িত। মানসিক প্রশান্তির চর্চা করতে হলে প্রতিটি শর্ত গুরুত্বসহকারে মানুন, ইতিবাচক চিন্তার অভ্যাস করুন, সৃষ্টিকর্তার প্রতি কৃতজ্ঞতা জ্ঞাপন করুন।</p>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">😊</div>
+      <strong>ইতিবাচক চিন্তা</strong>
+      <p>সর্বদা ইতিবাচক চিন্তা করুন</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🙏</div>
+      <strong>কৃতজ্ঞতা</strong>
+      <p>সৃষ্টিকর্তার প্রতি কৃতজ্ঞ থাকুন</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🎯</div>
+      <strong>ধৈর্য</strong>
+      <p>ধৈর্য ও প্রচেষ্টায় সফলতা আসে</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🌱</div>
+      <strong>বিশ্বাস</strong>
+      <p>নিজের উপর বিশ্বাস রাখুন</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SPECIAL CONDITIONS -->
+<section class="section fade-in" id="special">
+  <div class="section-header">
+    <div class="section-icon" style="background:#fde8e0">🏥</div>
+    <div>
+      <div class="section-title">বিশেষ রোগীর নির্দেশিকা</div>
+      <div class="section-subtitle">ডায়াবেটিস ও সাধারণ রোগ</div>
+    </div>
+  </div>
+
+  <!-- Diabetes accordion -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      💉 ডায়াবেটিস রোগী (Type 2)
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p>টাইপ ২ ডায়াবেটিস পুরোপুরি নিয়ন্ত্রণ এবং নির্মূল করা সম্ভব JK Lifestyle অনুসরণে।</p>
+      <br>
+      <strong>১ম সপ্তাহ:</strong> ফ্যাট এডাপ্টেশন। সব ওষুধ ও ইনসুলিন বন্ধ করে শুরু। প্রতিদিন সকালে খালি পেটে ১ বার ডায়াবেটিস মাপবেন, খাবার খাওয়ার ২ ঘন্টা পরে আরেকবার।
+      <br><br>
+      <strong>২য় সপ্তাহ:</strong> ড্রাই ফাস্টিং বা রোজা।
+      <br><br>
+      <strong>৩য় সপ্তাহ থেকে:</strong> ড্রাই ফাস্টিং, ওয়াটার ফাস্টিং ও ইন্টারমিটেন্ট ফাস্টিং সমন্বয়ে খাবারের রুটিন করুন।
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      ⚖️ সাধারণ রোগী (ওজন/প্রেশার/কোলেস্টেরল)
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      যারা অতিরিক্ত ওজন, প্রি-ডায়াবেটিস, ফ্যাটি লিভার, রক্তে কোলেস্টেরল, বাতরোগ, থাইরয়েড, মাইগ্রেন, উচ্চ রক্তচাপ, হরমোন সমস্যায় ভুগছেন তাদের জন্য:
+      <br><br>
+      <strong>১ম সপ্তাহ:</strong> ফ্যাট এডাপ্টেশন<br>
+      <strong>২য় সপ্তাহ:</strong> ড্রাই ফাস্টিং/রোজা<br>
+      <strong>৩য় সপ্তাহ থেকে:</strong> ড্রাই + ওয়াটার + ইন্টারমিটেন্ট ফাস্টিং সমন্বয়
+      <br><br>
+      যারা উচ্চরক্তচাপ ভুগছেন তারা সকালে ও বিকালে প্রেশার মেপে চার্টে লিখে রাখবেন।
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      ✅ মেইনটেইন পর্যায়ের লক্ষণ
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="list-item"><div class="list-dot dot-green"></div><span>শরীরে অতিরিক্ত কোন চর্বি জমা নেই</span></div>
+      <div class="list-item"><div class="list-dot dot-green"></div><span>রক্তচাপ ও ব্লাড প্রেশার স্বাভাবিক আছে</span></div>
+      <div class="list-item"><div class="list-dot dot-green"></div><span>শরীরে যেকোনো রকম প্রদাহ বা ইনফ্লামেশন দূর হয়ে গেছে</span></div>
+      <div class="list-item"><div class="list-dot dot-green"></div><span>কোনরকম ওষুধ বা ইনসুলিন ছাড়াই ডায়াবেটিস নিয়ন্ত্রণে আছে</span></div>
+      <div class="list-item"><div class="list-dot dot-green"></div><span>আপনি Insulin Resistance থেকে মুক্তি পেয়েছেন</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RECIPES -->
+<section class="section fade-in" id="recipes">
+  <div class="section-header">
+    <div class="section-icon" style="background:#fef3e0">☕</div>
+    <div>
+      <div class="section-title">বিশেষ রেসিপি</div>
+      <div class="section-subtitle">বুলেটপ্রুফ কফি ও মাকা পাউডার</div>
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <h3>☕ বুলেটপ্রুফ কফি রেসিপি</h3>
+    <div class="recipe-item"><span>অর্গানিক রোস্টেড কফি বিন</span><span>২ চা চামচ</span></div>
+    <div class="recipe-item"><span>ঘরে বানানো বাটার বা ঘি</span><span>১০ গ্রাম / ১ টেবিল চামচ</span></div>
+    <div class="recipe-item"><span>নারিকেল তেল (১০০% অর্গানিক)</span><span>২ চা চামচ</span></div>
+    <div class="recipe-item"><span>MCT Oil</span><span>১ টেবিল চামচ</span></div>
+    <div class="recipe-item"><span>আনসুইটেড কাকাও পাউডার</span><span>১/৪ চা চামচ</span></div>
+    <div class="recipe-item"><span>পিংক সল্ট</span><span>১ চিমটি</span></div>
+    <p style="font-size:12px;opacity:0.7;margin-top:14px;line-height:1.6">হাঁড়িতে ১ মগ পানি ফুটে উঠলে কফি গুড়া দিন, ২ মিনিট মাঝারি তাপে জ্বাল করুন। ব্লেন্ডারে ঢেলে বাকি সব উপাদান যোগ করে ব্লেন্ড করুন।</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🌿 মাকা পাউডারের উপকারিতা</div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>ভিটামিন, মিনারেলসে ভরপুর — ভিটামিন সি, বি৬, কপার ও আয়রন উল্লেখযোগ্য</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>নারী ও পুরুষ উভয়ের যৌন হরমোনের উন্নতি — দীর্ঘ সময় Sex Drive সক্রিয় রাখে</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>পুরুষের বন্ধ্যাত্ব ও Infertility প্রতিরোধে গুরুত্বপূর্ণ ভূমিকা</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>মহিলাদের PMS ও Menopause সমস্যায় উপকারী</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>হাড় মজবুত করে, মানসিক অবসন্নতা থেকে বেরিয়ে আসতে সাহায্য করে</span></div>
+    <div class="list-item"><div class="list-dot dot-gold"></div><span><strong>সেবন:</strong> প্রতিদিন ১ গ্লাস পানিতে ১ চা চামচ মাকা পাউডার মিশিয়ে পান করুন</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🍫 কাকাও পাউডারের উপকারিতা</div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>এন্টিঅক্সিডেন্টের বড় উৎস — মস্তিষ্কের প্রক্রিয়া উন্নত করে</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>রক্তচাপ নিয়ন্ত্রণে ভূমিকা রাখে, হার্টের সুরক্ষায় উপকারী</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>ইনসুলিন সেন্সিটিভিটি বাড়ায় — ডায়াবেটিস নিয়ন্ত্রণে সহায়ক</span></div>
+    <div class="list-item"><div class="list-dot dot-green"></div><span>কম শর্করাযুক্ত খাবার খাওয়া লোকদের মেটাবলিজম উন্নত করে</span></div>
+    <div class="list-item"><div class="list-dot dot-gold"></div><span><strong>সেরা ধরন:</strong> Natural Raw Cold-pressed Cacao Powder (পদ্ধতি-১)</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- IMPORTANT NOTES -->
+<section class="section fade-in">
+  <div class="section-header">
+    <div class="section-icon" style="background:#fde8e0">⚠️</div>
+    <div>
+      <div class="section-title">বিশেষভাবে মনে রাখুন</div>
+      <div class="section-subtitle">গুরুত্বপূর্ণ নির্দেশনা</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      📋 JK Lifestyle শুরু করার আগে
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="list-item"><div class="list-dot dot-gold"></div><span>পুরো গাইডলাইনটি মনোযোগ দিয়ে কয়েকবার পড়ুন</span></div>
+      <div class="list-item"><div class="list-dot dot-gold"></div><span>কিডনি জটিলতার রোগী হলে সরাসরি পরামর্শ নিন</span></div>
+      <div class="list-item"><div class="list-dot dot-gold"></div><span>প্রতিটি বিষয় গুরুত্ব দিয়ে পুরোপুরিভাবে মানতে হবে — আংশিক মানলে ক্ষতিগ্রস্ত হবেন</span></div>
+      <div class="list-item"><div class="list-dot dot-gold"></div><span>লাইফস্টাইল শুরু করার পরপরই থাইরয়েড, প্রেশারের ওষুধ নিজে নিজে বাদ দেবেন না</span></div>
+      <div class="list-item"><div class="list-dot dot-gold"></div><span>হাঁপানি ও শ্বাসকষ্টজনিত রোগীরা ওষুধ ও ইনহেলার নিয়ে সাক্ষাৎ করতে আসবেন</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>JK Lifestyle — Health Revolution</strong>
+  C-39/1, Aftabnagar, Badda, Dhaka-1212<br/>
+  📞 +88 01894 801400 | +88 013 1940 5418<br/>
+  📧 <a href="mailto:info@healthrevolutionbd.com">info@healthrevolutionbd.com</a><br/>
+  🌐 <a href="https://www.healthrevolutionbd.com">www.healthrevolutionbd.com</a><br/><br/>
+  <a href="https://www.facebook.com/DrJahangirkabircmc">🔵 Facebook: Dr. Jahangir Kabir</a><br/>
+  <a href="#">▶️ YouTube: dr.jahangir kabir</a>
+</footer>
+
+<script>
+  // Reading progress bar
+  window.addEventListener('scroll', () => {
+    const bar = document.getElementById('readingBar');
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    bar.style.width = pct + '%';
+  });
+
+  // Scroll to section
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Update active nav
+    document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // Accordion
+  function toggleAccordion(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('open'));
+    if (!isOpen) {
+      body.classList.add('open');
+      header.classList.add('open');
+    }
+  }
+
+  // Intersection observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
