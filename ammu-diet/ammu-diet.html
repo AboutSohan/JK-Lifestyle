@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>আম্মুর ডায়েট প্ল্যান</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1a5c2a;
+    --green-mid: #2e8b4a;
+    --green-light: #4caf73;
+    --green-pale: #e8f5ec;
+    --green-ultra: #f0faf3;
+    --orange: #e07b39;
+    --orange-light: #f5a96b;
+    --red-soft: #d94f4f;
+    --gold: #c9952a;
+    --cream: #fdf9f3;
+    --text-dark: #1a2e1f;
+    --text-mid: #3a5244;
+    --text-light: #6b8f75;
+    --shadow: 0 4px 24px rgba(30,90,50,0.10);
+    --shadow-lg: 0 8px 40px rgba(30,90,50,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Hind Siliguri', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green-light) 100%);
+    color: white;
+    padding: 60px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    padding: 6px 20px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    backdrop-filter: blur(8px);
+  }
+  .hero h1 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: clamp(28px, 6vw, 46px);
+    font-weight: 400;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .hero-sub {
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 480px;
+    margin: 0 auto 28px;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 16px;
+    padding: 12px 22px;
+    backdrop-filter: blur(10px);
+  }
+  .stat-pill strong { font-size: 22px; display: block; }
+  .stat-pill span { font-size: 12px; opacity: 0.8; }
+
+  /* WARNING BOX */
+  .warning-box {
+    background: linear-gradient(135deg, #fff8e6, #fff3d6);
+    border-left: 5px solid var(--gold);
+    border-radius: 0 16px 16px 0;
+    margin: 32px 20px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+    animation: slideIn 0.5s ease;
+  }
+  .warning-box .w-title {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .warning-box p { color: #5a4a1a; font-size: 15px; }
+
+  /* CONTAINER */
+  .container { max-width: 780px; margin: 0 auto; padding: 0 16px; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'Tiro Bangla', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--green-dark);
+    margin: 40px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--green-light), transparent);
+    border-radius: 2px;
+  }
+
+  /* WEEKLY TABLE */
+  .week-table-wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease;
+  }
+  .week-table { width: 100%; border-collapse: collapse; }
+  .week-table thead tr { background: var(--green-dark); color: white; }
+  .week-table thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .week-table tbody tr { background: white; border-bottom: 1px solid #e8f5ec; }
+  .week-table tbody tr:nth-child(even) { background: var(--green-ultra); }
+  .week-table tbody tr:hover { background: #ddf0e5; transition: background 0.2s; }
+  .week-table td { padding: 13px 16px; font-size: 14px; vertical-align: middle; }
+  .week-table td:first-child { font-weight: 600; color: var(--green-dark); }
+
+  .tag {
+    display: inline-block;
+    border-radius: 50px;
+    padding: 3px 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tag-fast { background: #fff0e0; color: #c06a10; }
+  .tag-dry { background: #fde8e8; color: #b83030; }
+  .tag-if { background: #e8f0ff; color: #2a4aaa; }
+  .tag-adapt { background: #e8f5ec; color: var(--green-dark); }
+
+  /* MEAL CARDS */
+  .meal-section { margin-bottom: 40px; }
+  .meal-day-title {
+    background: linear-gradient(135deg, var(--green-mid), var(--green-light));
+    color: white;
+    border-radius: 14px 14px 0 0;
+    padding: 14px 20px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .meal-cards-wrap {
+    background: white;
+    border-radius: 0 0 14px 14px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .meal-card {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--green-pale);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+    align-items: start;
+    transition: background 0.2s;
+  }
+  .meal-card:last-child { border-bottom: none; }
+  .meal-card:hover { background: var(--green-ultra); }
+  .meal-time {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green-mid);
+    background: var(--green-pale);
+    border-radius: 10px;
+    padding: 6px 10px;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .meal-icon { font-size: 20px; margin-bottom: 4px; }
+  .meal-name { font-weight: 600; color: var(--text-dark); margin-bottom: 4px; font-size: 15px; }
+  .meal-items { font-size: 13px; color: var(--text-mid); }
+  .meal-items li { margin-bottom: 2px; padding-left: 14px; position: relative; list-style: none; }
+  .meal-items li::before { content: '·'; position: absolute; left: 4px; color: var(--green-light); font-weight: 700; }
+
+  /* FOOD LISTS */
+  .food-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  @media(max-width: 540px) { .food-grid { grid-template-columns: 1fr; } }
+
+  .food-card {
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 0.5s ease;
+  }
+  .food-card.can-eat {
+    background: linear-gradient(160deg, #e8f5ec, white);
+    border: 1px solid #b8dfc4;
+  }
+  .food-card.cant-eat {
+    background: linear-gradient(160deg, #fde8e8, white);
+    border: 1px solid #f5b8b8;
+  }
+  .food-card-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .food-card.can-eat .food-card-title { color: var(--green-dark); }
+  .food-card.cant-eat .food-card-title { color: var(--red-soft); }
+  .food-list { list-style: none; }
+  .food-list li {
+    font-size: 13.5px;
+    padding: 5px 0 5px 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    color: var(--text-mid);
+  }
+  .food-list li:last-child { border-bottom: none; }
+  .food-card.can-eat .food-list li::before { content: '✓'; position: absolute; left: 0; color: var(--green-mid); font-weight: 700; }
+  .food-card.cant-eat .food-list li::before { content: '✗'; position: absolute; left: 0; color: var(--red-soft); font-weight: 700; }
+
+  /* PHASE TABLE */
+  .phase-table-wrap {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 32px;
+  }
+  .phase-table { width: 100%; border-collapse: collapse; }
+  .phase-table thead tr { background: var(--green-dark); color: white; }
+  .phase-table thead th { padding: 14px 18px; text-align: left; font-size: 14px; }
+  .phase-table td { padding: 14px 18px; font-size: 14px; border-bottom: 1px solid var(--green-pale); }
+  .phase-table tr:last-child td { border-bottom: none; }
+  .phase-table tr:nth-child(even) td { background: var(--green-ultra); }
+  .phase-num {
+    display: inline-flex;
+    width: 30px; height: 30px;
+    background: var(--green-mid);
+    color: white;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* TIPS */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media(max-width: 540px) { .tips-grid { grid-template-columns: 1fr; } }
+
+  .tip-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--green-light);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .tip-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .tip-icon { font-size: 28px; margin-bottom: 10px; }
+  .tip-title { font-weight: 700; font-size: 15px; color: var(--green-dark); margin-bottom: 6px; }
+  .tip-text { font-size: 13px; color: var(--text-mid); }
+
+  /* TARGET */
+  .target-box {
+    background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+    color: white;
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-lg);
+  }
+  .target-box h3 { font-size: 20px; margin-bottom: 18px; opacity: 0.9; }
+  .target-grid { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+  .target-item { background: rgba(255,255,255,0.15); border-radius: 14px; padding: 14px 20px; min-width: 120px; }
+  .target-item strong { font-size: 26px; display: block; }
+  .target-item span { font-size: 12px; opacity: 0.8; }
+
+  /* FOOTER NOTE */
+  .final-note {
+    background: linear-gradient(135deg, #fff8e6, #fff3d6);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 40px;
+    border: 1px solid #f0d890;
+  }
+  .final-note p { font-size: 16px; color: #5a4010; font-style: italic; line-height: 1.8; }
+
+  /* ANIMATIONS */
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MOBILE */
+  @media(max-width: 600px) {
+    .week-table thead th:nth-child(3),
+    .week-table td:nth-child(3) { display: none; }
+    .meal-card { grid-template-columns: 80px 1fr; }
+    .hero-stats { gap: 16px; }
+  }
+
+  .divider {
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--green-light), transparent);
+    margin: 40px 0;
+    border-radius: 2px;
+  }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .pill {
+    background: var(--green-pale);
+    color: var(--green-dark);
+    border-radius: 50px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #b8dfc4;
+  }
+  .pill.red { background: #fde8e8; color: var(--red-soft); border-color: #f5b8b8; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🌿 JK Lifestyle অনুপ্রাণিত কাস্টম প্ল্যান</div>
+  <h1>আম্মুর ওজন কমানোর<br>ডায়েট প্ল্যান</h1>
+  <p class="hero-sub">বাজেট-বান্ধব · বয়স উপযোগী · বাংলাদেশি খাবার ভিত্তিক</p>
+  <div class="hero-stats">
+    <div class="stat-pill"><strong>৪৬</strong><span>বছর বয়স</span></div>
+    <div class="stat-pill"><strong>৮১ কেজি</strong><span>বর্তমান ওজন</span></div>
+    <div class="stat-pill"><strong>৫৫-৬০ কেজি</strong><span>টার্গেট ওজন</span></div>
+    <div class="stat-pill"><strong>৫ ফুট</strong><span>উচ্চতা</span></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- WARNING -->
+  <div class="warning-box">
+    <div class="w-title">⚠️ গুরুত্বপূর্ণ সতর্কতা</div>
+    <p>৩ দিন ওয়াটার ফাস্টিং ৪৬ বছর বয়সী মহিলার জন্য <strong>অনেক বেশি aggressive</strong>। পায়ের রগে ব্যথা থাকলে হঠাৎ এত বড় ধাক্কায় electrolyte imbalance হতে পারে। নিচে একটি <strong>safe কিন্তু কার্যকর</strong> প্ল্যান দেওয়া হলো।</p>
+  </div>
+
+  <!-- WEEKLY SCHEDULE -->
+  <div class="section-title">📅 সাপ্তাহিক রুটিন</div>
+  <div class="week-table-wrap">
+    <table class="week-table">
+      <thead>
+        <tr>
+          <th>দিন</th>
+          <th>ফাস্টিং ধরন</th>
+          <th>খাওয়ার সময়</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>শনিবার</td>
+          <td><span class="tag tag-adapt">Fat Adaptation</span></td>
+          <td>সকাল, দুপুর, রাত</td>
+        </tr>
+        <tr>
+          <td>রবিবার</td>
+          <td><span class="tag tag-if">Intermittent Fasting</span></td>
+          <td>দুপুর ১২টা – রাত ৮টা</td>
+        </tr>
+        <tr>
+          <td>সোমবার</td>
+          <td><span class="tag tag-adapt">Fat Adaptation</span></td>
+          <td>সকাল, দুপুর, রাত</td>
+        </tr>
+        <tr>
+          <td>মঙ্গলবার</td>
+          <td><span class="tag tag-dry">ড্রাই ফাস্টিং (রোজা)</span></td>
+          <td>ইফতার – সেহরি</td>
+        </tr>
+        <tr>
+          <td>বুধবার</td>
+          <td><span class="tag tag-adapt">Fat Adaptation</span></td>
+          <td>সকাল, দুপুর, রাত</td>
+        </tr>
+        <tr>
+          <td>বৃহস্পতিবার</td>
+          <td><span class="tag tag-dry">ড্রাই ফাস্টিং (রোজা)</span></td>
+          <td>ইফতার – সেহরি</td>
+        </tr>
+        <tr>
+          <td>শুক্রবার</td>
+          <td><span class="tag tag-if">Intermittent Fasting</span></td>
+          <td>দুপুর ১২টা – রাত ৮টা</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13px; color:var(--text-light); margin-top:-20px; margin-bottom:32px; text-align:center;">
+    💡 ওয়াটার ফাস্টিং এখনই না — ২য় মাস থেকে চাইলে সপ্তাহে ১ দিন যোগ করা যাবে।
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- FAT ADAPTATION DAY MEALS -->
+  <div class="section-title">🍽️ Fat Adaptation দিনের খাবার</div>
+  <p style="font-size:14px;color:var(--text-light);margin-top:-12px;margin-bottom:20px;">(শনি / সোম / বুধ)</p>
+
+  <div class="meal-section">
+    <div class="meal-cards-wrap" style="border-radius:14px;">
+
+      <div class="meal-card">
+        <div class="meal-time"><div class="meal-icon">🌅</div>সকাল<br>উঠে</div>
+        <div>
+          <div class="meal-name">খালি পেটে ডিটক্স ড্রিংক</div>
+          <ul class="meal-items">
+            <li>১ গ্লাস কুসুম গরম পানিতে ACV (অ্যাপেল সাইডার ভিনেগার) ১ চা চামচ + লেবুর রস</li>
+            <li>অথবা কাঁচা হলুদ চা — হলুদ বাটা ১ চামচ + নারকেল তেল ১ চামচ + কালো মরিচ চিমটি + অল্প মধু</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-time"><div class="meal-icon">🥚</div>সকাল<br>৯-১০টা</div>
+        <div>
+          <div class="meal-name">প্রোটিন সমৃদ্ধ সকালের নাস্তা</div>
+          <ul class="meal-items">
+            <li>২টা ডিম — সিদ্ধ বা খাঁটি ঘি দিয়ে ভাজি</li>
+            <li>পালং / লাউ / পুঁই শাক ভাজি (এক্সট্রা ভার্জিন অলিভ অয়েল বা ঘি দিয়ে)</li>
+            <li>টক দই ১ কাপ (চিনি ছাড়া, বাড়িতে পাতা হলে সেরা)</li>
+            <li>৮-১০টা কাঠবাদাম (আগের রাতে পানিতে ভেজানো)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-time"><div class="meal-icon">🍚</div>দুপুর<br>১-২টা</div>
+        <div>
+          <div class="meal-name">মেইন মিল — প্রোটিন ও শাক-সবজি প্রধান</div>
+          <ul class="meal-items">
+            <li>লাল চালের ভাত — মাত্র ২-৩ চামচ (অথবা সম্পূর্ণ বাদ দিলে আরও ভালো)</li>
+            <li>রুই / কাতলা / ইলিশ মাছ — খাঁটি সরিষার তেল বা নারকেল তেলে রান্না</li>
+            <li>অথবা দেশি মুরগির মাংস (চর্বি সহ) পরিমিত মাত্রায়</li>
+            <li>মিশ্র শাক-সবজি ভাজি — ঢেঁড়স, বরবটি, শিম, ফুলকপি (অলিভ অয়েল দিয়ে)</li>
+            <li>কাঁচা সালাদ — শসা, টমেটো, গাজর, মুলা, ধনিয়া পাতা, লেবুর রস</li>
+            <li>কালোজিরা ও হলুদ দিয়ে রান্না করার চেষ্টা করুন</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-time"><div class="meal-icon">🥥</div>বিকাল<br>৪-৫টা</div>
+        <div>
+          <div class="meal-name">হালকা স্ন্যাক্স</div>
+          <ul class="meal-items">
+            <li>ডাবের পানি ১টা (সেরা electrolyte)</li>
+            <li>বাদাম — কাঠবাদাম / চিনাবাদাম (ভাজা ছাড়া)</li>
+            <li>দেশীয় মৌসুমি ফল — পেয়ারা, আমড়া, জলপাই, কামরাঙা (অল্প)</li>
+            <li>অথবা ১ কাপ গ্রিন টি (চিনি ছাড়া)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-time"><div class="meal-icon">🌙</div>রাত<br>৭-৮টা</div>
+        <div>
+          <div class="meal-name">রাতের খাবার — হালকা ও প্রোটিন নির্ভর</div>
+          <ul class="meal-items">
+            <li>ভাত নেই</li>
+            <li>ডিম ২টা + মিশ্র সবজি ভাজি</li>
+            <li>মাছের ঝোল (হালকা) অথবা মুরগির স্যুপ</li>
+            <li>কাঁচা পেঁপে / লাউ / চালকুমড়া রান্না (হালকা মশলায়)</li>
+            <li>খাওয়ার আগে ১ গ্লাস পানি</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- INTERMITTENT FASTING DAY -->
+  <div class="section-title">⏰ Intermittent Fasting দিনের খাবার</div>
+  <p style="font-size:14px;color:var(--text-light);margin-top:-12px;margin-bottom:20px;">(রবি / শুক্র) — সকাল ১২টার আগে শুধু পানি, লেবু পানি বা হলুদ চা</p>
+
+  <div class="meal-section">
+    <div class="meal-cards-wrap" style="border-radius:14px;">
+
+      <div class="meal-card" style="background:linear-gradient(135deg,#e8f0ff,white);">
+        <div class="meal-time" style="background:#dbe6ff; color:#2a4aaa;"><div class="meal-icon">💧</div>সকাল<br>পুরোটা</div>
+        <div>
+          <div class="meal-name" style="color:#2a4aaa;">শুধু পানীয়</div>
+          <ul class="meal-items">
+            <li>কুসুম গরম পানি + লেবুর রস</li>
+            <li>হলুদ চা (চিনি ছাড়া)</li>
+            <li>সবুজ চা (গ্রিন টি) — চিনি ছাড়া</li>
+            <li>পানি যত ইচ্ছা পান করুন</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-time"><div class="meal-icon">🍽️</div>দুপুর<br>১২টা</div>
+        <div>
+          <div class="meal-name">প্রথম খাবার — ভরপুর প্রোটিন</div>
+          <ul class="meal-items">
+            <li>৩টা ডিম — ঘি বা নারকেল তেলে ভাজি</li>
+            <li>প্রচুর সবজি — যে কোনো শাক, ঢেঁড়স, পটল</li>
+            <li>কাঁচা সালাদ + বাদাম</li>
+            <li>টক দই ১ কাপ</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-time"><div class="meal-icon">🐟</div>বিকাল<br>৩-৪টা</div>
+        <div>
+          <div class="meal-name">মাঝের খাবার</div>
+          <ul class="meal-items">
+            <li>মাছ ভাজি বা সিদ্ধ — চর্বিযুক্ত দেশি মাছ (শোল, কই, মাগুর ভালো)</li>
+            <li>অথবা মুরগির মাংস (হালকা রান্না)</li>
+            <li>সবজি + টক দই</li>
+            <li>ডাবের পানি</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-time"><div class="meal-icon">🌃</div>রাত<br>৭-৮টা</div>
+        <div>
+          <div class="meal-name">শেষ খাবার — এরপর আর কিছু না</div>
+          <ul class="meal-items">
+            <li>হালকা সবজি ভাজি + ডিম</li>
+            <li>কাঁচা সালাদ — শসা, মুলা, গাজর</li>
+            <li>১ কাপ গরম হলুদ দুধ (চিনি ছাড়া, অল্প মধু) — ভালো ঘুমের জন্য</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ROZA DAY -->
+  <div class="section-title">🌙 রোজার দিনের খাবার</div>
+  <p style="font-size:14px;color:var(--text-light);margin-top:-12px;margin-bottom:20px;">(মঙ্গল / বৃহস্পতি)</p>
+
+  <div class="meal-section">
+    <div class="meal-cards-wrap" style="border-radius:14px; border-top:4px solid #d94f4f;">
+
+      <div class="meal-card">
+        <div class="meal-time" style="background:#fde8e8;color:#b83030;"><div class="meal-icon">🌄</div>সেহরি</div>
+        <div>
+          <div class="meal-name">সেহরির খাবার — শক্তি ধরে রাখার জন্য</div>
+          <ul class="meal-items">
+            <li>ডিম ২-৩টা (সিদ্ধ বা ঘি দিয়ে ভাজি)</li>
+            <li>যেকোনো শাক ভাজি (লাউ, পালং, পুঁই)</li>
+            <li>টক দই ১ কাপ</li>
+            <li>কাঠবাদাম ১০টা</li>
+            <li>প্রচুর পানি পান করুন</li>
+            <li>লাল চালের ভাত ২-৩ চামচ (যদি খুব দুর্বল লাগে)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meal-card">
+        <div class="meal-time" style="background:#fde8e8;color:#b83030;"><div class="meal-icon">🌇</div>ইফতার</div>
+        <div>
+          <div class="meal-name">ইফতার — ধীরে ধীরে শুরু করুন</div>
+          <ul class="meal-items">
+            <li>প্রথমে পানি, তারপর খেজুর ১-২টা</li>
+            <li>ডাবের পানি — electrolyte পূরণে সেরা</li>
+            <li>মাছ বা মুরগি + প্রচুর সবজি</li>
+            <li>কাঁচা সালাদ</li>
+            <li>ভাত — একদম কম বা নেই</li>
+            <li>চিড়া-দই মিশিয়ে খেতে পারেন (অল্প পরিমাণে)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FOOD LISTS -->
+  <div class="section-title">🥦 কী খাবেন, কী খাবেন না</div>
+  <div class="food-grid">
+    <div class="food-card can-eat">
+      <div class="food-card-title">✅ খাবেন</div>
+      <ul class="food-list">
+        <li><strong>তেল:</strong> খাঁটি ঘি, নারকেল তেল, অলিভ অয়েল, খাঁটি সরিষার তেল</li>
+        <li><strong>প্রোটিন:</strong> দেশি মুরগি, দেশি ডিম, রুই-কাতলা-ইলিশ, শোল-কই-মাগুর মাছ</li>
+        <li><strong>শাক:</strong> পালং, পুঁই, লাউশাক, কলমি, সরিষা শাক, মেথি শাক</li>
+        <li><strong>সবজি:</strong> লাউ, ঢেঁড়স, পটল, বরবটি, শিম, ফুলকপি, ব্রকলি, কাঁচা পেঁপে</li>
+        <li><strong>ভাত:</strong> লাল চালের ভাত — অল্প পরিমাণে</li>
+        <li><strong>ফল:</strong> পেয়ারা, আমড়া, জলপাই, কামরাঙা, জাম্বুরা, লেবু</li>
+        <li><strong>দুগ্ধ:</strong> টক দই (মিষ্টি ছাড়া), পাতলা ছানা</li>
+        <li><strong>পানীয়:</strong> ডাবের পানি, লেবু পানি, ACV পানি, হলুদ চা, গ্রিন টি</li>
+        <li><strong>মশলা:</strong> হলুদ, কালোজিরা, আদা, রসুন, কাঁচা মরিচ, ধনিয়া</li>
+        <li><strong>বাদাম:</strong> কাঠবাদাম (ভেজানো), চিনাবাদাম (কাঁচা)</li>
+        <li><strong>মধু:</strong> খাঁটি মধু — অল্প পরিমাণে</li>
+        <li><strong>খেজুর:</strong> ইফতারে ১-২টা</li>
+      </ul>
+    </div>
+    <div class="food-card cant-eat">
+      <div class="food-card-title">❌ খাবেন না</div>
+      <ul class="food-list">
+        <li><strong>তেল:</strong> সয়াবিন তেল — চিরতরে বাদ, পাম অয়েল</li>
+        <li><strong>ভাত-রুটি:</strong> সাদা চালের ভাত, সাদা আটার রুটি, পরোটা, লুচি</li>
+        <li><strong>মিষ্টি:</strong> চিনি, গুড়, মিষ্টি দই, রসগোল্লা, সন্দেশ, হালুয়া</li>
+        <li><strong>পানীয়:</strong> কোলড্রিংস, প্যাকেট জুস, মিষ্টি চা, চিনিযুক্ত শরবত</li>
+        <li><strong>ময়দা:</strong> বিস্কুট, কেক, পাউরুটি, নুডলস, পাস্তা, সেমাই</li>
+        <li><strong>ফাস্ট ফুড:</strong> বার্গার, পিৎজা, ফ্রাইড চিকেন, সিঙাড়া, সমুচা</li>
+        <li><strong>ডাল:</strong> মসুর ডাল, মুগ ডাল আপাতত কম রাখুন</li>
+        <li><strong>আলু:</strong> সরাসরি আলু ভাজি বা ভর্তা এড়িয়ে চলুন</li>
+        <li><strong>কলা:</strong> মিষ্টি ফল — আম, কলা, আঙুর এড়িয়ে চলুন</li>
+        <li><strong>প্রসেসড:</strong> প্যাকেট খাবার, টিনজাত খাবার, রেডি মিক্স</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- LEGS TIP -->
+  <div class="section-title">🦵 পায়ের রগের ব্যথার জন্য বিশেষ টিপস</div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">🌡️</div>
+      <div class="tip-title">গরম পানিতে পা ডোবান</div>
+      <div class="tip-text">প্রতিদিন রাতে ১৫-২০ মিনিট হালকা গরম পানিতে পা ডুবিয়ে রাখুন। সাথে সামান্য লবণ মিশিয়ে নিতে পারেন।</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">💧</div>
+      <div class="tip-title">পানি বেশি পান করুন</div>
+      <div class="tip-text">রগের ক্র্যাম্পের একটা বড় কারণ পানিশূন্যতা। প্রতিদিন কমপক্ষে ৮-১০ গ্লাস পানি পান করুন।</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🥬</div>
+      <div class="tip-title">ম্যাগনেশিয়াম সমৃদ্ধ খাবার</div>
+      <div class="tip-text">পালং শাক, কাঠবাদাম, কলার বদলে পেয়ারা খান। ম্যাগনেশিয়াম রগের ব্যথা কমাতে সাহায্য করে।</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🚶</div>
+      <div class="tip-title">হালকা হাঁটা</div>
+      <div class="tip-text">প্রতিদিন সকালে ৩০ মিনিট ধীরে হাঁটুন। হঠাৎ দ্রুত হাঁটা বা দৌড় দেবেন না — আস্তে আস্তে বাড়ান।</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PHASES -->
+  <div class="section-title">🗓️ সারাজীবনের প্ল্যান — তিনটি ধাপ</div>
+
+  <div class="phase-table-wrap">
+    <table class="phase-table">
+      <thead>
+        <tr>
+          <th>ধাপ</th>
+          <th>সময়কাল</th>
+          <th>লক্ষ্য ও কী করবেন</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="phase-num">১</span> <strong>Weight Loss</strong></td>
+          <td>৩-৬ মাস</td>
+          <td>৮১ কেজি থেকে ৫৫-৬০ কেজিতে আসা। এই প্ল্যানটা কঠোরভাবে মানা — রোজা, IF, Fat Adaptation চলবে।</td>
+        </tr>
+        <tr>
+          <td><span class="phase-num">২</span> <strong>Maintenance</strong></td>
+          <td>আজীবন (সহজ)</td>
+          <td>সপ্তাহে ১ দিন রোজাই যথেষ্ট। খাবারের নিয়ম অনেক flexible। মাঝে মাঝে পরিবারের সাথে স্বাভাবিক খাবার খেলেও সমস্যা নেই।</td>
+        </tr>
+        <tr>
+          <td><span class="phase-num">৩</span> <strong>চিরতরে বদলাতে হবে</strong></td>
+          <td>আজীবন</td>
+          <td>সয়াবিন তেল বাদ · চিনি সীমিত · প্রতিদিন হাঁটা · রাত ১০টার মধ্যে ঘুম — এই ৪টা মানলে ওজন ফিরবে না।</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TARGET BOX -->
+  <div class="target-box">
+    <h3>📊 প্রথম মাসের টার্গেট</h3>
+    <div class="target-grid">
+      <div class="target-item"><strong>১ম সপ্তাহ</strong><span>Fat Adaptation শুরু, ভাত কমানো</span></div>
+      <div class="target-item"><strong>২য় সপ্তাহ</strong><span>Intermittent Fasting যোগ</span></div>
+      <div class="target-item"><strong>৩য় সপ্তাহ</strong><span>রোজা ২ দিন যোগ</span></div>
+      <div class="target-item"><strong>৪র্থ সপ্তাহ</strong><span>পুরো রুটিন ঠিক করা</span></div>
+    </div>
+    <p style="margin-top:18px; opacity:0.85; font-size:14px;">প্রথম মাসে <strong>৩-৫ কেজি</strong> কমার সম্ভাবনা আছে যদি ঠিকমতো মানা হয়।</p>
+  </div>
+
+  <!-- FINAL NOTE -->
+  <div class="final-note">
+    <p>❤️ <strong>শেষ কথা:</strong> ওজন কমানো marathon, sprint না।<br>
+    আম্মুকে জোর না করে ধীরে ধীরে অভ্যাস করান।<br>
+    রোজার দিন যদি শরীর দুর্বল লাগে, সেদিন জোর করবেন না।<br><br>
+    <em>সুস্থ থাকুন, ভালো থাকুন। 🌿</em></p>
+  </div>
+
+  <!-- CREDIT -->
+  <p style="text-align:center; font-size:12px; color:var(--text-light); padding-bottom:32px;">
+    JK Lifestyle (Dr. Jahangir Kabir) অনুপ্রাণিত · Health Revolution BD · কাস্টমাইজড বাংলাদেশি সংস্করণ
+  </p>
+
+</div>
+</body>
+</html>
